@@ -6,13 +6,13 @@
 	<link rel="stylesheet" type="text/css" href="./main.css">
 	<link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed" rel="stylesheet">
 	<title>
-		Lava Runner
+		Flood Runner
 	</title>
 </head>
 <body>
 	<div class = "topbar">
 		<span id = "logo">
-			LAVA RUNNER
+			FLOOD RUNNER
 		</span>
 	</div>
 	<div id = "game_view">
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<div id = "game_name">
-				LAVA RUNNER
+				FLOOD RUNNER
 			</div>
 			<div id = "name_input">
 				<input autocomplete = "off" type = "text" id = "name" placeholder = "NAME">
@@ -43,13 +43,14 @@
 				<br>
 				Press spacebar or right-click mouse button to jump.
 			</div>
-			<canvas id = "canvas">
+			<canvas id = "canvas" width = "1200" height = "500">
 			</canvas>
 		</div>
 	</div>
 </body>
 
-<script type = "text/javascript" src = "./gameplay.js"></script>
+<script type = "text/javascript" src = "./hero.js"></script>
+<script type = "text/javascript" src = "./obstacles.js"></script>
 <script type = "text/javascript" src = "./game.js"></script>
 
 </html>

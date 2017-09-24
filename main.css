@@ -7,8 +7,7 @@ body{
 	width: 100%;
 	top:50px;
 	bottom: 0;
-	background-color: #1fb1c4;
-	background-color: #bf1e09;
+	background-color: #4286f4;
 }
 
 .topbar{
@@ -29,10 +28,10 @@ body{
 
 #start_screen{
 	position: absolute;
-	left: 10%;
-	bottom: 10%;
+	width: 1200px;
 	top: 10%;
-	width: 80%;
+	left: 3%;
+	height: 500px;
 }
 
 #username{
