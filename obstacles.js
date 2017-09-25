@@ -2,7 +2,7 @@ function Obstacle(width, height, posx, posy, src){
 	this.width = width;
 	this.height = height;
 	this.posx = posx;
-	this.poxy = posy;
+	this.posy = posy;
 	this.src = src;
 	this.image = new Image();
 	this.image.src = src;

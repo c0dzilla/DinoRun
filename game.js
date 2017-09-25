@@ -30,12 +30,11 @@ function startGame(){
 
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-	ctx.moveTo(0, 0.7*canvas.height);
-	ctx.lineTo(canvas.width, 0.7*canvas.height);
-	ctx.stroke();
-	var hero = new Hero(128, 128, 0.1*canvas.width, 0.55*canvas.height, 128, 128, "images/hero.png", 38);
+	var ground = new Line(); 
+	ground.draw(ctx, 0, 0.7*canvas.height, canvas.width, 0.7*canvas.height);
+	var hero = new Hero(128, 128, 0.1*canvas.width, 0.55*canvas.height, 128, 128, "./images/hero.png", 38);
 	hero.draw(ctx, hero.posx, hero.posy);
-	var obstacle = new Obstacle(64, 64, 0.5*canvas.width, 0.6*canvas.height, "images/obstacle.png");
+	var obstacle = new Obstacle(64, 64, 0.5*canvas.width, 0.6*canvas.height, "./images/obstacle.png");
 	obstacle.draw(ctx, obstacle.posx, obstacle.posy);
 /*	
 	var elements = {};

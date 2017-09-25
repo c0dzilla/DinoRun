@@ -45,7 +45,7 @@ function Hero(width, height, posx, posy, speedx, speedy, src, jumpCode){
 	this.width = width;
 	this.height = height;
 	this.posx = posx;
-	this.poxy = posy;
+	this.posy = posy;
 	this.speedx = speedx;
 	this.speedy = speedy;
 	this.src = src;
