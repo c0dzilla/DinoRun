@@ -38,6 +38,7 @@ function startGame(){
 	obstacle.draw(ctx, 0.5*canvas.width, ground.endy - obstacle.height - 1);
 
 	obstacle.move(ctx);
+	obstacle.checkCollision(hero);
 /*	
 	var elements = {};
 

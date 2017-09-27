@@ -27,3 +27,20 @@ Obstacle.prototype.move = function(ctx){
 		ctx.drawImage(that.image, that.posx, that.posy);
 	}, 1);
 }
+
+Obstacle.prototype.checkCollision = function(hero){
+	var that = this;
+	var intervalFunction = setInterval(function(){
+		if ((that.posx + that.width >= hero.posx && that.posx + that.width <= hero.posx + hero.width) ||
+			(that.posx >= hero.posx && that.posx <= hero.posx + hero.width) ||
+			(that.posy + that.width >= hero.posy && that.posy <= hero.posy + hero.width) ||
+			(that.posy >= hero.posy && that.posy <= hero.posy + hero.posy + hero.width)){
+			
+			collisionDetected();
+		}
+	}, 1);
+	function collisionDetected(){
+		clearInterval(intervalFunction);
+		alert("You just lost kid.");
+	}
+}
