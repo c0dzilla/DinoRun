@@ -78,7 +78,7 @@ Hero.prototype.jump = function(ctx, initialHeight){
 			startDescend();
 		}
 		else{
-			ctx.clearRect(that.posx, that.posy, that.posx + that.width, that.posy + that.height);
+			ctx.clearRect(that.posx, that.posy, that.width, that.height);
 			that.posy = that.posy - that.speedy;
 			ctx.drawImage(that.image, that.posx, that.posy);
 		}
@@ -94,7 +94,7 @@ Hero.prototype.jump = function(ctx, initialHeight){
 				stopDescend();
 			}
 			else{
-				ctx.clearRect(that.posx, that.posy, that.posx + that.width, that.posy + that.height);
+				ctx.clearRect(that.posx, that.posy, that.width, that.height);
 				that.posy = that.posy + that.speedy;
 				ctx.drawImage(that.image, that.posx, that.posy);
 			}
