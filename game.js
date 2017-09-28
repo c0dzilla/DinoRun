@@ -36,9 +36,9 @@ function startGame(){
 	var hero = new Hero(42, 100, 0, 1, "./images/hero.png", 38);
 	hero.draw(ctx, 0.1*canvas.width, ground.endy - hero.height - 1);
 	var obstacle = new Obstacle(64, 64, 1, 0, "./images/obstacle.png");
-	obstacle.draw(ctx, 0.5*canvas.width, ground.endy - obstacle.height - 1);
+	obstacle.draw(ctx, canvas.width, ground.endy - obstacle.height - 1);
 
-	obstacle.move(ctx);
+	obstacle.move(ctx, canvas);
 	hero.updateScore(score);
 	obstacle.checkCollision(hero);
 /*	

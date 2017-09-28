@@ -19,11 +19,14 @@ Obstacle.prototype.draw = function(ctx, posx, posy){
 	}
 }
 
-Obstacle.prototype.move = function(ctx){
+Obstacle.prototype.move = function(ctx, canvas){
 	var that = this;
 	var intervalFunction = setInterval(function(){
 		ctx.clearRect(that.posx, that.posy, that.width, that.height);
 		that.posx = that.posx - that.speedx;
+		if (that.posx + that.width <= 0){
+			that.posx = canvas.width;
+		}
 		ctx.drawImage(that.image, that.posx, that.posy);
 	}, 1);
 }
