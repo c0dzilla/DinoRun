@@ -15,6 +15,7 @@ function startGame(){
 	var username = document.getElementById('username');
 	var name = document.getElementById('name');
 	var instructions = document.getElementById('instructions');
+	var score = document.getElementById('present_score');
 
 	playButton.style.zIndex = -1;
 	gameName.style.zIndex = -1;
@@ -38,6 +39,7 @@ function startGame(){
 	obstacle.draw(ctx, 0.5*canvas.width, ground.endy - obstacle.height - 1);
 
 	obstacle.move(ctx);
+	hero.updateScore(score);
 	obstacle.checkCollision(hero);
 /*	
 	var elements = {};

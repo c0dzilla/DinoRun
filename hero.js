@@ -53,6 +53,7 @@ function Hero(width, height, speedx, speedy, src, jumpCode){
 	this.image.src = src;
 	this.jumpCode = jumpCode;
 	this.ongoingJump = 0;
+	this.score = 0;
 }
 
 Hero.prototype.draw = function(ctx, posx, posy){
@@ -105,4 +106,12 @@ Hero.prototype.jump = function(ctx, initialHeight){
 			that.ongoingJump = 0;
 		}
 	}
+}
+
+Hero.prototype.updateScore = function(score){
+	var that = this;
+	var intervalFunction = setInterval(function(){
+		that.score++;
+		score.innerHTML = that.score;
+	}, 1);
 }

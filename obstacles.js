@@ -31,8 +31,6 @@ Obstacle.prototype.move = function(ctx){
 Obstacle.prototype.checkCollision = function(hero){
 	var that = this;
 	var intervalFunction = setInterval(function(){
-		console.log(that.posx); console.log(that.posy); console.log(that.width); console.log(that.height);
-		console.log(hero.posx); console.log(hero.posy); console.log(hero.width); console.log(hero.height);
 		if  (((that.posx + that.width >= hero.posx && that.posx + that.width <= hero.posx + hero.width) ||
 			  (that.posx >= hero.posx && that.posx <= hero.posx + hero.width)) &&
 			 ((that.posy + that.height >= hero.posy && that.posy + that.height <= hero.posy + hero.height) ||
@@ -41,8 +39,10 @@ Obstacle.prototype.checkCollision = function(hero){
 			collisionDetected();
 		}
 	}, 1);
+
 	function collisionDetected(){
 		clearInterval(intervalFunction);
-		alert("You just lost kid.");
+		alert("Your score is "+ hero.score);
+		window.location.reload();
 	}
 }
