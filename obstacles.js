@@ -31,11 +31,13 @@ Obstacle.prototype.move = function(ctx){
 Obstacle.prototype.checkCollision = function(hero){
 	var that = this;
 	var intervalFunction = setInterval(function(){
-		if ((that.posx + that.width >= hero.posx && that.posx + that.width <= hero.posx + hero.width) ||
-			(that.posx >= hero.posx && that.posx <= hero.posx + hero.width) ||
-			(that.posy + that.width >= hero.posy && that.posy <= hero.posy + hero.width) ||
-			(that.posy >= hero.posy && that.posy <= hero.posy + hero.posy + hero.width)){
-			
+		console.log(that.posx); console.log(that.posy); console.log(that.width); console.log(that.height);
+		console.log(hero.posx); console.log(hero.posy); console.log(hero.width); console.log(hero.height);
+		if  (((that.posx + that.width >= hero.posx && that.posx + that.width <= hero.posx + hero.width) ||
+			  (that.posx >= hero.posx && that.posx <= hero.posx + hero.width)) &&
+			 ((that.posy + that.height >= hero.posy && that.posy + that.height <= hero.posy + hero.height) ||
+			  (that.posy >= hero.posy && that.posy <= hero.posy + hero.height))){
+
 			collisionDetected();
 		}
 	}, 1);
