@@ -21,14 +21,15 @@ Obstacle.prototype.draw = function(ctx, posx, posy){
 
 Obstacle.prototype.move = function(ctx, canvas){
 	var that = this;
-	var intervalFunction = setInterval(function(){
-		ctx.clearRect(that.posx, that.posy, that.width, that.height);
-		that.posx = that.posx - that.speedx;
-		if (that.posx + that.width <= 0){
-			that.posx = canvas.width;
-		}
-		ctx.drawImage(that.image, that.posx, that.posy);
-	}, 1);
+	window.requestAnimationFrame(function(){
+		that.move(ctx, canvas);
+	})
+	ctx.clearRect(that.posx, that.posy, that.width, that.height);
+	that.posx = that.posx - that.speedx;
+	if (that.posx + that.width <= 0){
+		that.posx = canvas.width;
+	}
+	ctx.drawImage(that.image, that.posx, that.posy);
 }
 
 Obstacle.prototype.checkCollision = function(hero){
@@ -41,7 +42,7 @@ Obstacle.prototype.checkCollision = function(hero){
 
 			collisionDetected();
 		}
-	}, 1);
+	}, 10);
 
 	function collisionDetected(){
 		clearInterval(intervalFunction);

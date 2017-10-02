@@ -33,9 +33,9 @@ function startGame(){
 	var ctx = canvas.getContext('2d');
 	var ground = new Line(); 
 	ground.draw(ctx, 0, 0.7*canvas.height, canvas.width, 0.7*canvas.height);
-	var hero = new Hero(42, 100, 0, 1, "./images/hero.png", 38);
+	var hero = new Hero(42, 100, 0, 5, "./images/hero.png", 38);
 	hero.draw(ctx, 0.1*canvas.width, ground.endy - hero.height - 1);
-	var obstacle = new Obstacle(64, 64, 1, 0, "./images/obstacle.png");
+	var obstacle = new Obstacle(64, 64, 5, 0, "./images/obstacle.png");
 	obstacle.draw(ctx, canvas.width, ground.endy - obstacle.height - 1);
 
 	obstacle.move(ctx, canvas);
@@ -65,7 +65,7 @@ function startGame(){
 function eventHandler(event, ctx, hero){
 
 	if (event.keyCode == 38 && hero.ongoingJump == 0){
-		hero.jump(ctx, hero.posy);
+		hero.jump(ctx, hero.posy, 0);
 		/*var initialHeight = elements["hero"].posy;
 		var jumpState = setInterval(function(){executeJump(jumpState, ctx, elements, initialHeight);}, 1);
 	*/}
