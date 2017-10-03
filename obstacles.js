@@ -34,7 +34,7 @@ Obstacle.prototype.move = function(ctx, canvas){
 	if (that.posx + that.width <= 0){
 		that.posx = canvas.width;
 	}
-	ctx.drawImage(that.image, that.posx, that.posy);
+	that.draw(ctx, that.posx, that.posy);
 }
 
 Obstacle.prototype.checkCollision = function(hero){
