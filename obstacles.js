@@ -14,8 +14,13 @@ Obstacle.prototype.draw = function(ctx, posx, posy){
 	this.posx = posx;
 	this.posy = posy;
 	var that = this;
-	this.image.onload = function(){
-		ctx.drawImage(that.image, that.posx, that.posy);
+	if (this.image.complete){
+		ctx.drawImage(this.image, this.posx, this.posy);
+	}
+	else{
+		this.image.onload = function(){
+			ctx.drawImage(that.image, that.posx, that.posy);
+		}
 	}
 }
 
