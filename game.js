@@ -33,7 +33,7 @@ function startGame(){
 	var ctx = canvas.getContext('2d');
 	var ground = new Line(); 
 	ground.draw(ctx, 0, 0.95*canvas.height, canvas.width, 0.95*canvas.height);
-	var hero = new Hero(280, 385, 1400, 770, 0, 5, "./images/spritesheet_run.png", 38);
+	var hero = new Hero(583/8, 86, 583, 86, 10, 5, "./images/spritesheet_run.png", 38);
 	hero.draw(ctx, 0.1*canvas.width, ground.endy - hero.height - 1);
 	var obstacle = new Obstacle(64, 64, 5, 0, "./images/obstacle.png");
 	obstacle.draw(ctx, canvas.width, ground.endy - obstacle.height - 1);

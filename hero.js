@@ -58,6 +58,7 @@ function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, src, jum
 	this.score = 0;
 	this.row = 0;
 	this.column = 0;
+	this.currentFrame = 0;
 	this.totalRows = spriteHeight/height;
 	this.totalColumns = spriteWidth/width;
 }
@@ -110,12 +111,16 @@ Hero.prototype.jump = function(ctx, initialHeight, maxheightReached){
 
 Hero.prototype.move = function(ctx, canvas){
 	var that = this;
-	var intervalFunction = setInterval(function(){
-		that.row = (that.row + 1)%that.totalRows;
-		that.column = (that.column + 1)%that.totalColumns;
-		ctx.clearRect(that.posx, that.posy, that.width, that.height);
-		that.draw(ctx, that.posx, that.posy);
-	}, 100);
+	window.requestAnimationFrame(function(){
+		that.move(ctx, canvas);
+	});
+	that.currentFrame = that.currentFrame + that.speedx;
+	that.row = (Math.floor(that.currentFrame/that.spriteWidth)) % this.totalRows;
+	that.column = (Math.floor(that.currentFrame/that.width)) % this.totalColumns;
+	console.log(that.row);
+	console.log(that.column);
+	ctx.clearRect(that.posx, that.posy, that.width, that.height);
+	that.draw(ctx, that.posx, that.posy);
 }
 
 Hero.prototype.updateScore = function(score){
