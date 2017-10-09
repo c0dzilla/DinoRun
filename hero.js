@@ -41,9 +41,11 @@ gameElements.prototype.setImage = function(ctx, src){
 	this.image.src = src;
 }
 */
-function Hero(width, height, speedx, speedy, src, jumpCode){
+function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, src, jumpCode){
 	this.width = width;
 	this.height = height;
+	this.spriteWidth = spriteWidth;
+	this.spriteHeight = spriteHeight;
 	this.posx = 0;
 	this.posy = 0;
 	this.speedx = speedx;
@@ -54,6 +56,10 @@ function Hero(width, height, speedx, speedy, src, jumpCode){
 	this.jumpCode = jumpCode;
 	this.ongoingJump = 0;
 	this.score = 0;
+	this.row = 0;
+	this.column = 0;
+	this.totalRows = spriteHeight/height;
+	this.totalColumns = spriteWidth/width;
 }
 
 Hero.prototype.draw = function(ctx, posx, posy){
@@ -61,11 +67,11 @@ Hero.prototype.draw = function(ctx, posx, posy){
 	this.posy = posy;
 	var that = this;
 	if (this.image.complete){
-		ctx.drawImage(this.image, this.posx, this.posy);
+		ctx.drawImage(this.image, this.column*this.width, this.row*this.height, this.width, this.height, this.posx, this.posy, this.width, this.height);
 	}
 	else{
 		this.image.onload = function(){
-			ctx.drawImage(that.image, that.posx, that.posy);
+			ctx.drawImage(that.image, that.column*that.width, that.row*that.height, that.width, that.height, that.posx, that.posy, that.width, that.height);
 		}
 	}
 }
@@ -100,6 +106,16 @@ Hero.prototype.jump = function(ctx, initialHeight, maxheightReached){
 			that.jump(ctx, initialHeight, maxheightReached);
 		});
 	}
+}
+
+Hero.prototype.move = function(ctx, canvas){
+	var that = this;
+	var intervalFunction = setInterval(function(){
+		that.row = (that.row + 1)%that.totalRows;
+		that.column = (that.column + 1)%that.totalColumns;
+		ctx.clearRect(that.posx, that.posy, that.width, that.height);
+		that.draw(ctx, that.posx, that.posy);
+	}, 100);
 }
 
 Hero.prototype.updateScore = function(score){
