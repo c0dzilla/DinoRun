@@ -56,7 +56,7 @@ function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, accelera
 	this.image = new Image();
 	this.image.src = src;
 	this.jumpCode = jumpCode;
-	this.ongoingJump = 0;
+	this.ongoingJump = false;
 	this.score = 0;
 	this.row = 0;
 	this.column = 0;
@@ -85,7 +85,7 @@ Hero.prototype.changeSpeed = function(speedx, speedy){
 }
 
 Hero.prototype.jump = function(ctx, initialHeight, maxheightReached){
-	this.ongoingJump = 1;
+	this.ongoingJump = true;
 	if (!maxheightReached){
 		ctx.clearRect(this.posx, this.posy, this.width, this.height);
 		this.posy = this.posy - this.speedy;
@@ -116,11 +116,13 @@ Hero.prototype.move = function(ctx, canvas){
 	window.requestAnimationFrame(function(){
 		that.move(ctx, canvas);
 	});
-	that.currentFrame = that.currentFrame + that.speedx;
-	that.row = (Math.floor(that.currentFrame/that.spriteWidth)) % this.totalRows;
-	that.column = (Math.floor(that.currentFrame/that.width)) % this.totalColumns;
-	ctx.clearRect(that.posx, that.posy, that.width, that.height);
-	that.draw(ctx, that.posx, that.posy);
+	if (!that.ongoingJump){
+		that.currentFrame = that.currentFrame + that.speedx;
+		that.row = (Math.floor(that.currentFrame/that.spriteWidth)) % this.totalRows;
+		that.column = (Math.floor(that.currentFrame/that.width)) % this.totalColumns;
+		ctx.clearRect(that.posx, that.posy, that.width, that.height);
+		that.draw(ctx, that.posx, that.posy);
+	}
 }
 
 Hero.prototype.updateScore = function(score){
