@@ -31,17 +31,20 @@ function startGame(){
 		return;
 	}
 
+	username.innerHTML = name.value;
+
 	playButton.style.zIndex = -1;
 	gameName.style.zIndex = -1;
 	nameInput.style.zIndex = -1;
 	instructions.style.zIndex = -1;
 	scoreBox.style.zIndex = 1;
 	alert.style.zIndex = -1;
+	username.style.zIndex = 1;
 
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var ground = new Line(); 
-	ground.draw(ctx, 0, 0.95*canvas.height, canvas.width, 0.95*canvas.height);
+	ground.draw(ctx, 0, 0.75*canvas.height, canvas.width, 0.75*canvas.height);
 	var hero = new Hero(583/8, 86, 583, 86, 10, 5, "./images/spritesheet_run.png", 38);
 	hero.draw(ctx, 0.1*canvas.width, ground.endy - hero.height - 1);
 	var obstacle = new Obstacle(64, 64, 5, 0, "./images/obstacle.png");
