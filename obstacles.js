@@ -1,10 +1,12 @@
-function Obstacle(width, height, speedx, speedy, src){
+function Obstacle(width, height, speedx, speedy, accelerationx, accelerationy, src){
 	this.width = width;
 	this.height = height;
 	this.posx = 0;
 	this.posy = 0;
 	this.speedx = speedx;
 	this.speedy = speedy;
+	this.accelerationx = accelerationx;
+	this.accelerationy = accelerationy;
 	this.src = src;
 	this.image = new Image();
 	this.image.src = src;
@@ -54,4 +56,12 @@ Obstacle.prototype.checkCollision = function(hero){
 		alert("Your score is "+ hero.score);
 		window.location.reload();
 	}
+}
+
+Obstacle.prototype.accelerate = function(ifx, ify){
+	var that = this;
+	var intervalFunction = setInterval(function(){
+		that.speedx += that.accelerationx;
+		that.speedy += that.accelerationy;
+	}, 1);
 }

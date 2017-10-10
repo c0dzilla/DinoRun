@@ -41,7 +41,7 @@ gameElements.prototype.setImage = function(ctx, src){
 	this.image.src = src;
 }
 */
-function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, src, jumpCode){
+function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, accelerationx, accelerationy, src, jumpCode){
 	this.width = width;
 	this.height = height;
 	this.spriteWidth = spriteWidth;
@@ -50,6 +50,8 @@ function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, src, jum
 	this.posy = 0;
 	this.speedx = speedx;
 	this.speedy = speedy;
+	this.accelerationx = accelerationx;
+	this.accelerationy = accelerationy;
 	this.src = src;
 	this.image = new Image();
 	this.image.src = src;
@@ -117,8 +119,6 @@ Hero.prototype.move = function(ctx, canvas){
 	that.currentFrame = that.currentFrame + that.speedx;
 	that.row = (Math.floor(that.currentFrame/that.spriteWidth)) % this.totalRows;
 	that.column = (Math.floor(that.currentFrame/that.width)) % this.totalColumns;
-	console.log(that.row);
-	console.log(that.column);
 	ctx.clearRect(that.posx, that.posy, that.width, that.height);
 	that.draw(ctx, that.posx, that.posy);
 }
@@ -129,4 +129,12 @@ Hero.prototype.updateScore = function(score){
 		that.score++;
 		score.innerHTML = that.score;
 	}, 100);
+}
+
+Hero.prototype.accelerate = function(ifx, ify){
+	var that = this;
+	var intervalFunction = setInterval(function(){
+		that.speedx += that.accelerationx;
+		that.speedy += that.accelerationy;
+	}, 1);
 }

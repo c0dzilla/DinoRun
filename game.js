@@ -12,6 +12,9 @@ function initialSetup(){
 		}
 	});
 
+	var name = document.getElementById('name');
+	name.focus();
+
 }
 
 function startGame(){
@@ -45,16 +48,17 @@ function startGame(){
 	var ctx = canvas.getContext('2d');
 	var ground = new Line(); 
 	ground.draw(ctx, 0, 0.75*canvas.height, canvas.width, 0.75*canvas.height);
-	var hero = new Hero(583/8, 86, 583, 86, 10, 5, "./images/spritesheet_run.png", 38);
+	var hero = new Hero(583/8, 86, 583, 86, 15, 5, 0, 0, "./images/spritesheet_run.png", 38);
 	hero.draw(ctx, 0.1*canvas.width, ground.endy - hero.height - 1);
-	var obstacle = new Obstacle(64, 64, 5, 0, "./images/obstacle.png");
+	var obstacle = new Obstacle(64, 64, 5, 0, 0, 0, "./images/obstacle.png");
 	obstacle.draw(ctx, canvas.width, ground.endy - obstacle.height - 1);
 
 	hero.move(ctx, canvas);
-
 	obstacle.move(ctx, canvas);
 	hero.updateScore(score);
 	obstacle.checkCollision(hero);
+	hero.accelerate(true, true);
+	obstacle.accelerate(true, true);
 /*	
 	var elements = {};
 
