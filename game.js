@@ -5,6 +5,13 @@ function initialSetup(){
 	var playButton = document.getElementById('play');
 	playButton.addEventListener('click', startGame);
 
+	var name = document.getElementById('name');
+	name.addEventListener("keyup", function(event){
+		if (event.keyCode == 13){
+			startGame();
+		}
+	});
+
 }
 
 function startGame(){
@@ -14,20 +21,22 @@ function startGame(){
 	var nameInput = document.getElementById('name_input');
 	var username = document.getElementById('username');
 	var name = document.getElementById('name');
+	var scoreBox = document.getElementById('scores');
 	var instructions = document.getElementById('instructions');
 	var score = document.getElementById('present_score');
+	var alert = document.getElementById('alert');
+
+	if (!name.value){
+		alert.style.zIndex = 1;
+		return;
+	}
 
 	playButton.style.zIndex = -1;
 	gameName.style.zIndex = -1;
 	nameInput.style.zIndex = -1;
 	instructions.style.zIndex = -1;
-
-	if (name.value){
-		username.innerHTML  = name.value;
-	}
-	else{
-		username.innerHTML = "Codzilla";
-	}
+	scoreBox.style.zIndex = 1;
+	alert.style.zIndex = -1;
 
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');

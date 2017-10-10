@@ -46,7 +46,7 @@ body{
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	z-index: 1; 
+	z-index: -1; 
 }
 
 #game_name{
@@ -100,6 +100,15 @@ input{
 	left: 30%;
 	right: 30%;
 	text-align: center;	
+}
+
+#alert{
+	position: absolute;
+	z-index: -1;
+	left: 30%;
+	right: 30%;
+	top: 60%;
+	text-align: center;
 }
 
 #canvas{
