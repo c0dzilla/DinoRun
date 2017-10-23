@@ -2,18 +2,45 @@ window.onload = initialSetup();
 
 function initialSetup(){
 
-	var playButton = document.getElementById('play');
-	playButton.addEventListener('click', startGame);
-
 	var name = document.getElementById('name');
 	name.addEventListener("keyup", function(event){
 		if (event.keyCode == 13){
-			startGame();
+			playGame();
 		}
 	});
 
-	var name = document.getElementById('name');
 	name.focus();
+
+}
+
+function playGame(){
+
+	var name = document.getElementById('name');
+	var alert = document.getElementById('alert');
+	var playButton = document.getElementById('play_button');
+	var play = document.getElementById('play');
+	var gameName = document.getElementById('game_name');
+	var nameInput = document.getElementById('name_input');
+	var username = document.getElementById('username');
+	var scoreBox = document.getElementById('scores');
+	var score = document.getElementById('present_score');
+	
+	if (!name.value){
+		alert.innerHTML = "Please Enter Username!";
+		return;
+	}
+
+	else{
+		username.innerHTML = name.value;
+	}
+
+	playButton.addEventListener('click', startGame);
+	play.focus();
+
+	playButton.style.zIndex = 1;
+	nameInput.style.zIndex = -1;
+	username.style.zIndex = 1;
+	alert.innerHTML = "Use Arrow Keys To Navigate!";
 
 }
 
@@ -25,24 +52,17 @@ function startGame(){
 	var username = document.getElementById('username');
 	var name = document.getElementById('name');
 	var scoreBox = document.getElementById('scores');
-	var instructions = document.getElementById('instructions');
 	var score = document.getElementById('present_score');
 	var alert = document.getElementById('alert');
-
-	if (!name.value){
-		alert.style.zIndex = 1;
-		return;
-	}
-
-	username.innerHTML = name.value;
 
 	playButton.style.zIndex = -1;
 	gameName.style.zIndex = -1;
 	nameInput.style.zIndex = -1;
-	instructions.style.zIndex = -1;
 	scoreBox.style.zIndex = 1;
 	alert.style.zIndex = -1;
 	username.style.zIndex = 1;
+
+	alert.innerHTML = "";
 
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');

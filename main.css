@@ -82,8 +82,8 @@ input{
 
 #play_button{
 	position: absolute;
-	z-index: 1;
-	top: 55%;
+	z-index: -1;
+	top: 40%;
 	left: 46%;
 	right: 46%;
 }
@@ -92,21 +92,12 @@ input{
 	width: 100%;
 }
 
-#instructions{
-	position: absolute;
-	z-index: 1;
-	top: 70%;
-	left: 30%;
-	right: 30%;
-	text-align: center;	
-}
-
 #alert{
 	position: absolute;
-	z-index: -1;
 	left: 30%;
 	right: 30%;
 	top: 60%;
+	z-index: 1;
 	text-align: center;
 }
 
