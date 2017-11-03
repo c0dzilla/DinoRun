@@ -15,37 +15,34 @@ function Obstacle(width, height, speedx, speedy, accelerationx, accelerationy, s
 Obstacle.prototype.draw = function(ctx, posx, posy){
 	this.posx = posx;
 	this.posy = posy;
-	var that = this;
 	if (this.image.complete){
 		ctx.drawImage(this.image, this.posx, this.posy);
 	}
 	else{
-		this.image.onload = function(){
-			ctx.drawImage(that.image, that.posx, that.posy);
+		this.image.onload = ()=> {
+			ctx.drawImage(this.image, this.posx, this.posy);
 		}
 	}
 }
 
 Obstacle.prototype.move = function(ctx, canvas){
-	var that = this;
-	window.requestAnimationFrame(function(){
-		that.move(ctx, canvas);
+	window.requestAnimationFrame( ()=> {
+		this.move(ctx, canvas);
 	})
-	ctx.clearRect(that.posx, that.posy, that.width, that.height);
-	that.posx = that.posx - that.speedx;
-	if (that.posx + that.width <= 0){
-		that.posx = canvas.width;
+	ctx.clearRect(this.posx, this.posy, this.width, this.height);
+	this.posx = this.posx - this.speedx;
+	if (this.posx + this.width <= 0){
+		this.posx = canvas.width;
 	}
-	that.draw(ctx, that.posx, that.posy);
+	this.draw(ctx, this.posx, this.posy);
 }
 
 Obstacle.prototype.checkCollision = function(hero){
-	var that = this;
-	var intervalFunction = setInterval(function(){
-		if  (((that.posx + that.width >= hero.posx && that.posx + that.width <= hero.posx + hero.width) ||
-			  (that.posx >= hero.posx && that.posx <= hero.posx + hero.width)) &&
-			 ((that.posy + that.height >= hero.posy && that.posy + that.height <= hero.posy + hero.height) ||
-			  (that.posy >= hero.posy && that.posy <= hero.posy + hero.height))){
+	var intervalFunction = setInterval( ()=> {
+		if  (((this.posx + this.width >= hero.posx && this.posx + this.width <= hero.posx + hero.width) ||
+			  (this.posx >= hero.posx && this.posx <= hero.posx + hero.width)) &&
+			 ((this.posy + this.height >= hero.posy && this.posy + this.height <= hero.posy + hero.height) ||
+			  (this.posy >= hero.posy && this.posy <= hero.posy + hero.height))){
 
 			collisionDetected();
 		}
@@ -59,9 +56,8 @@ Obstacle.prototype.checkCollision = function(hero){
 }
 
 Obstacle.prototype.accelerate = function(ifx, ify){
-	var that = this;
 	var intervalFunction = setInterval(function(){
-		that.speedx += that.accelerationx;
-		that.speedy += that.accelerationy;
+		this.speedx += this.accelerationx;
+		this.speedy += this.accelerationy;
 	}, 1);
 }

@@ -25,13 +25,12 @@ function Hero(width, height, spriteWidth, spriteHeight, speedx, speedy, accelera
 Hero.prototype.draw = function(ctx, posx, posy){
 	this.posx = posx;
 	this.posy = posy;
-	var that = this;
 	if (this.image.complete){
 		ctx.drawImage(this.image, this.column*this.width, this.row*this.height, this.width, this.height, this.posx, this.posy, this.width, this.height);
 	}
 	else{
-		this.image.onload = function(){
-			ctx.drawImage(that.image, that.column*that.width, that.row*that.height, that.width, that.height, that.posx, that.posy, that.width, that.height);
+		this.image.onload = ()=> {
+			ctx.drawImage(this.image, this.column*this.width, this.row*this.height, this.width, this.height, this.posx, this.posy, this.width, this.height);
 		}
 	}
 }
@@ -61,39 +60,35 @@ Hero.prototype.jump = function(ctx, initialHeight, maxheightReached){
 	}
 	
 	if (this.ongoingJump){
-		var that = this;
-		window.requestAnimationFrame(function(){
-			that.jump(ctx, initialHeight, maxheightReached);
+		window.requestAnimationFrame( ()=> {
+			this.jump(ctx, initialHeight, maxheightReached);
 		});
 	}
 }
 
 Hero.prototype.move = function(ctx, canvas){
-	var that = this;
-	window.requestAnimationFrame(function(){
-		that.move(ctx, canvas);
+	window.requestAnimationFrame( ()=> {
+		this.move(ctx, canvas);
 	});
-	if (!that.ongoingJump){
-		that.currentFrame = that.currentFrame + that.speedx;
-		that.row = (Math.floor(that.currentFrame/that.spriteWidth)) % this.totalRows;
-		that.column = (Math.floor(that.currentFrame/that.width)) % this.totalColumns;
-		ctx.clearRect(that.posx, that.posy, that.width, that.height);
-		that.draw(ctx, that.posx, that.posy);
+	if (!this.ongoingJump){
+		this.currentFrame = this.currentFrame + this.speedx;
+		this.row = (Math.floor(this.currentFrame/this.spriteWidth)) % this.totalRows;
+		this.column = (Math.floor(this.currentFrame/this.width)) % this.totalColumns;
+		ctx.clearRect(this.posx, this.posy, this.width, this.height);
+		this.draw(ctx, this.posx, this.posy);
 	}
 }
 
 Hero.prototype.updateScore = function(score){
-	var that = this;
-	var intervalFunction = setInterval(function(){
-		that.score++;
-		score.innerHTML = that.score;
+	var intervalFunction = setInterval( ()=> {
+		this.score++;
+		score.innerHTML = this.score;
 	}, 100);
 }
 
 Hero.prototype.accelerate = function(ifx, ify){
-	var that = this;
-	var intervalFunction = setInterval(function(){
-		that.speedx += that.accelerationx;
-		that.speedy += that.accelerationy;
+	var intervalFunction = setInterval( ()=> {
+		this.speedx += this.accelerationx;
+		this.speedy += this.accelerationy;
 	}, 1);
 }
