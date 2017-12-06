@@ -89,7 +89,7 @@ function startGame(){
 function eventHandler(event, ctx, hero, obstacle) {
 
 //	Upper arrow key to jump	
-	if (event.keyCode == 38 && !hero.checkJumpStatus()){
+	if (event.keyCode == 38 && !hero.pause){
 		hero.jump(ctx, hero.posy, 0);
 	}
 
