@@ -20,6 +20,7 @@ function Hero(width, height, totalColumns, totalRows, speedx, speedy, accelerati
 	this.totalColumns = totalColumns;
 	this.frameWidth = width/totalColumns;
 	this.frameHeight = height/totalRows;
+	this.pause = false;
 }
 
 Hero.prototype.draw = function(ctx, posx, posy){
@@ -42,23 +43,24 @@ Hero.prototype.changeSpeed = function(speedx, speedy){
 
 Hero.prototype.jump = function(ctx, initialHeight, maxheightReached){
 	this.ongoingJump = true;
-	if (!maxheightReached){
-		ctx.clearRect(this.posx, this.posy, this.frameWidth, this.frameHeight);
-		this.posy = this.posy - this.speedy;
-		this.draw(ctx, this.posx, this.posy);
-		if (initialHeight - this.posy >= 1.5*this.height){			
-			maxheightReached = 1;
+	if (!this.pause) {
+		if (!maxheightReached){
+			ctx.clearRect(this.posx, this.posy, this.frameWidth, this.frameHeight);
+			this.posy = this.posy - this.speedy;
+			this.draw(ctx, this.posx, this.posy);
+			if (initialHeight - this.posy >= 1.5*this.height){			
+				maxheightReached = 1;
+			}
+		}
+		else{
+			ctx.clearRect(this.posx, this.posy, this.frameWidth, this.framwHeight);
+			this.posy = this.posy + this.speedy;
+			this.draw(ctx, this.posx, this.posy);
+			if (this.posy == initialHeight){
+				this.ongoingJump = false;
+			}
 		}
 	}
-	else{
-		ctx.clearRect(this.posx, this.posy, this.frameWidth, this.framwHeight);
-		this.posy = this.posy + this.speedy;
-		this.draw(ctx, this.posx, this.posy);
-		if (this.posy == initialHeight){
-			this.ongoingJump = false;
-		}
-	}
-	
 	if (this.ongoingJump){
 		window.requestAnimationFrame( ()=> {
 			this.jump(ctx, initialHeight, maxheightReached);
@@ -70,7 +72,7 @@ Hero.prototype.move = function(ctx, canvas){
 	window.requestAnimationFrame( ()=> {
 		this.move(ctx, canvas);
 	});
-	if (!this.ongoingJump){
+	if (!this.ongoingJump && !this.pause){
 		this.currentFrame = this.currentFrame + this.speedx;
 		this.row = (Math.floor(this.currentFrame/this.width)) % this.totalRows;
 		this.column = (Math.floor(this.currentFrame/this.frameWidth)) % this.totalColumns;
@@ -81,18 +83,26 @@ Hero.prototype.move = function(ctx, canvas){
 
 Hero.prototype.updateScore = function(score){
 	var intervalFunction = setInterval( ()=> {
-		this.score++;
-		score.innerHTML = this.score;
+		if (!this.pause) {
+			this.score++;
+			score.innerHTML = this.score;
+		}
 	}, 100);
 }
 
 Hero.prototype.accelerate = function(ifx, ify){
 	var intervalFunction = setInterval( ()=> {
-		this.speedx += this.accelerationx;
-		this.speedy += this.accelerationy;
+		if (!this.pause) {
+			this.speedx += this.accelerationx;
+			this.speedy += this.accelerationy;
+		}
 	}, 1);
 }
 
 Hero.prototype.checkJumpStatus = function() {
 	return this.ongoingJump;
+}
+
+Hero.prototype.pauseToggle = function() {
+	this.pause = this.pause^true;
 }

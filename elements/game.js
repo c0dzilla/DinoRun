@@ -81,15 +81,21 @@ function startGame(){
 	obstacle.accelerate(true, true);
 
 	document.addEventListener('keydown', function(event){
-		eventHandler(event, ctx, hero);
+		eventHandler(event, ctx, hero, obstacle);
 	});
 
 }
 
-function eventHandler(event, ctx, hero){
+function eventHandler(event, ctx, hero, obstacle) {
 
+//	Upper arrow key to jump	
 	if (event.keyCode == 38 && !hero.checkJumpStatus()){
 		hero.jump(ctx, hero.posy, 0);
 	}
 
+//	Pressing 'p' to pause game
+	if (event.keyCode == 80) {
+		hero.pauseToggle();
+		obstacle.pauseToggle();
+	}
 }

@@ -14,6 +14,7 @@ function Obstacle(width, height, speedx, speedy, accelerationx, accelerationy, s
 	this.src = src;
 	this.image = new Image();
 	this.image.src = src;
+	this.pause = false;
 }
 
 Obstacle.prototype.draw = function(ctx, posx, posy){
@@ -33,22 +34,26 @@ Obstacle.prototype.move = function(ctx, canvas){
 	window.requestAnimationFrame( ()=> {
 		this.move(ctx, canvas);
 	})
-	ctx.clearRect(this.posx, this.posy, this.width, this.height);
-	this.posx = this.posx - this.speedx;
-	if (this.posx + this.width <= 0){
-		this.posx = canvas.width;
+	if (!this.pause) {
+		ctx.clearRect(this.posx, this.posy, this.width, this.height);
+		this.posx = this.posx - this.speedx;
+		if (this.posx + this.width <= 0){
+			this.posx = canvas.width;
+		}
+		this.draw(ctx, this.posx, this.posy);
 	}
-	this.draw(ctx, this.posx, this.posy);
 }
 
 Obstacle.prototype.checkCollision = function(hero){
 	var intervalFunction = setInterval( ()=> {
-		if  (((this.posx + this.width >= hero.posx && this.posx + this.width <= hero.posx + hero.frameWidth) ||
-			  (this.posx >= hero.posx && this.posx <= hero.posx + hero.frameWidth)) &&
-			 ((this.posy + this.height >= hero.posy && this.posy + this.height <= hero.posy + hero.frameHeight) ||
-			  (this.posy >= hero.posy && this.posy <= hero.posy + hero.frameHeight))){
+		if (!this.pause) {
+			if  (((this.posx + this.width >= hero.posx && this.posx + this.width <= hero.posx + hero.frameWidth) ||
+				  (this.posx >= hero.posx && this.posx <= hero.posx + hero.frameWidth)) &&
+				 ((this.posy + this.height >= hero.posy && this.posy + this.height <= hero.posy + hero.frameHeight) ||
+				  (this.posy >= hero.posy && this.posy <= hero.posy + hero.frameHeight))){
 
-			collisionDetected();
+				collisionDetected();
+			}
 		}
 	}, 10);
 
@@ -61,7 +66,14 @@ Obstacle.prototype.checkCollision = function(hero){
 
 Obstacle.prototype.accelerate = function(ifx, ify){
 	var intervalFunction = setInterval(function(){
-		this.speedx += this.accelerationx;
-		this.speedy += this.accelerationy;
+		if (!this.pause) {
+			this.speedx += this.accelerationx;
+			this.speedy += this.accelerationy;
+		}
 	}, 1);
+}
+
+Obstacle.prototype.pauseToggle = function() {
+	console.log("paused");
+	this.pause = this.pause^true;
 }
