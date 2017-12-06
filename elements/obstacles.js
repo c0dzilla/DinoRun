@@ -1,3 +1,7 @@
+/*
+	TODO: Consider svg
+*/
+
 function Obstacle(width, height, speedx, speedy, accelerationx, accelerationy, src){
 	this.width = width;
 	this.height = height;
@@ -39,10 +43,10 @@ Obstacle.prototype.move = function(ctx, canvas){
 
 Obstacle.prototype.checkCollision = function(hero){
 	var intervalFunction = setInterval( ()=> {
-		if  (((this.posx + this.width >= hero.posx && this.posx + this.width <= hero.posx + hero.width) ||
-			  (this.posx >= hero.posx && this.posx <= hero.posx + hero.width)) &&
-			 ((this.posy + this.height >= hero.posy && this.posy + this.height <= hero.posy + hero.height) ||
-			  (this.posy >= hero.posy && this.posy <= hero.posy + hero.height))){
+		if  (((this.posx + this.width >= hero.posx && this.posx + this.width <= hero.posx + hero.frameWidth) ||
+			  (this.posx >= hero.posx && this.posx <= hero.posx + hero.frameWidth)) &&
+			 ((this.posy + this.height >= hero.posy && this.posy + this.height <= hero.posy + hero.frameHeight) ||
+			  (this.posy >= hero.posy && this.posy <= hero.posy + hero.frameHeight))){
 
 			collisionDetected();
 		}
