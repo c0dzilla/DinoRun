@@ -92,3 +92,7 @@ Hero.prototype.accelerate = function(ifx, ify){
 		this.speedy += this.accelerationy;
 	}, 1);
 }
+
+Hero.prototype.checkJumpStatus = function() {
+	return this.ongoingJump;
+}

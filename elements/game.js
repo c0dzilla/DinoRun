@@ -88,7 +88,7 @@ function startGame(){
 
 function eventHandler(event, ctx, hero){
 
-	if (event.keyCode == 38 && hero.ongoingJump == 0){
+	if (event.keyCode == 38 && !hero.checkJumpStatus()){
 		hero.jump(ctx, hero.posy, 0);
 	}
 
