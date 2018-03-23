@@ -1,0 +1,1 @@
+A simple running game in vanilla javascript inspired from Google's dino game. Looking forward to improving game design(currently it has a very simple one using images from the internet as I'm not much of a designer). Play [here](https://www.dinorun.herokuapp.com).
