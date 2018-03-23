@@ -1,1 +1,2 @@
 A simple running game in vanilla javascript inspired from Google's dino game. Looking forward to improving game design(currently it has a very simple one using images from the internet as I'm not much of a designer). Play [here](https://dinorun.herokuapp.com).
+Many parameters such as horizontal and vertical acceleration have been set to 0 for simplicity. A user can customize the game to his/her needs simply by changing values passed in the constructor during hero and obstacle object initializations.
