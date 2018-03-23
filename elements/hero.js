@@ -85,7 +85,7 @@ Hero.prototype.updateScore = function(score){
 	var intervalFunction = setInterval( ()=> {
 		if (!this.pause) {
 			this.score++;
-			score.innerHTML = this.score;
+			score.innerHTML = "Score: " + this.score;
 		}
 	}, 100);
 }
