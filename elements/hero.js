@@ -49,11 +49,11 @@ Hero.prototype.jump = function(ctx, initialHeight, maxheightReached){
 			this.posy = this.posy - this.speedy;
 			this.draw(ctx, this.posx, this.posy);
 			if (initialHeight - this.posy >= 1.5*this.height){			
-				maxheightReached = 1;
+				maxheightReached = true;
 			}
 		}
 		else{
-			ctx.clearRect(this.posx, this.posy, this.frameWidth, this.framwHeight);
+			ctx.clearRect(this.posx, this.posy, this.frameWidth, this.frameHeight);
 			this.posy = this.posy + this.speedy;
 			this.draw(ctx, this.posx, this.posy);
 			if (this.posy == initialHeight){

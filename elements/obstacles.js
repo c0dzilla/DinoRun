@@ -74,6 +74,5 @@ Obstacle.prototype.accelerate = function(ifx, ify){
 }
 
 Obstacle.prototype.pauseToggle = function() {
-	console.log("paused");
 	this.pause = this.pause^true;
 }

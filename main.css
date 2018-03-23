@@ -1,6 +1,7 @@
 body{
 	margin: 0;
-}	
+	font-family: 'PT Sans', sans-serif;
+}
 
 #game_view{
 	position: absolute;
@@ -18,12 +19,13 @@ body{
 	color: white;
 	line-height: 50px;
 	font-size: 30px;
-	font-family: 'Saira Semi Condensed', sans-serif;
+/*	font-family: 'Saira Semi Condensed', sans-serif;*/
 }
 
 #logo{
-	position: relative;
-	left: 10px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 #start_screen{

@@ -88,10 +88,13 @@ function startGame(){
 
 function eventHandler(event, ctx, hero, obstacle) {
 
-//	Upper arrow key to jump	
-	if (event.keyCode == 32 && !hero.pause){
+//	Spacebar to jump	
+	if (event.keyCode == 32) {
 		event.preventDefault();
-		hero.jump(ctx, hero.posy, 0);
+		if (!hero.pause && !hero.ongoingJump) {
+			console.log(1);
+			hero.jump(ctx, hero.posy, false);	
+		}
 	}
 
 //	Pressing 'p' to pause game
