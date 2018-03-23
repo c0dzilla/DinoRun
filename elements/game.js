@@ -40,7 +40,7 @@ function playGame(){
 	playButton.style.zIndex = 1;
 	nameInput.style.zIndex = -1;
 	username.style.zIndex = 1;
-	alert.innerHTML = "Use Arrow Keys To Navigate!";
+	alert.innerHTML = "Use Spacebar to Jump<br>Press p to pause game at any instant";
 
 }
 
@@ -89,7 +89,8 @@ function startGame(){
 function eventHandler(event, ctx, hero, obstacle) {
 
 //	Upper arrow key to jump	
-	if (event.keyCode == 38 && !hero.pause){
+	if (event.keyCode == 32 && !hero.pause){
+		event.preventDefault();
 		hero.jump(ctx, hero.posy, 0);
 	}
 
